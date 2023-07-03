@@ -1,9 +1,8 @@
 import React from "react";
-import { SafeAreaView, useColorScheme } from "react-native";
+import { SafeAreaView, useColorScheme, Text, View } from "react-native";
 import { useNetInfo } from "@react-native-community/netinfo";
 
-import NetworkCheck from "./NetworkCheck";
-
+import Section from "./Section";
 import { getDefaultTextColor } from "../lib";
 import { styles } from "../styles";
 
@@ -19,7 +18,13 @@ const NetworkUnavailable = ({ connectionDetails }) => {
     <SafeAreaView
       style={[backgroundStyle, styles.container, styles.errorContainer]}
     >
-      <NetworkCheck status={netInfo.isConnected} type={netInfo.type} />
+      <View style={[styles.container]}>
+        <Section>
+          <Text style={styles.statusText}>
+            {netInfo.isConnected ? "Connected" : "Disconnected"}
+          </Text>
+        </Section>
+      </View>
     </SafeAreaView>
   );
 };

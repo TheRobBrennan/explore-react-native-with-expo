@@ -20,13 +20,12 @@ const NetworkConnected = ({ connectionDetails }) => {
     <SafeAreaView style={[backgroundStyle, styles.container]}>
       <StatusBar barStyle={isDarkMode ? "light-content" : "dark-content"} />
       <Section
-        title={
-          "Connection Status : " + netInfo.isConnected
-            ? "Connected"
-            : "Disconnected"
-        }
+        title={`${
+          netInfo.type != "other"
+            ? `${netInfo.type.toLowerCase()} connectivity`
+            : "Network connectivity"
+        } is available`}
       ></Section>
-      <Section title={"You are connected by " + netInfo.type}></Section>
       <NetworkDetails details={connectionDetails} />
     </SafeAreaView>
   );
