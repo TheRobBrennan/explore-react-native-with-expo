@@ -17,7 +17,6 @@ import {
   View,
 } from "react-native";
 import { useNetInfo } from "@react-native-community/netinfo";
-
 import { Colors, Header } from "react-native/Libraries/NewAppScreen";
 
 const NetworkCheck = ({ status, type }) => {
@@ -29,6 +28,10 @@ const NetworkCheck = ({ status, type }) => {
       <Text style={styles.statusText}>Connection Type : {type}</Text>
     </View>
   );
+};
+
+const NetworkDetails = ({ details }) => {
+  return <Text style={[styles.sectionContainer]}>{details}</Text>;
 };
 
 const Section = ({ children, title }) => {
@@ -104,16 +107,7 @@ const App = () => {
       ) : (
         <NetworkCheck status={netInfo.isConnected} type={netInfo.type} />
       )}
-      <Text
-        style={[
-          styles.sectionContainer,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}
-      >
-        {connectionDetails}
-      </Text>
+      <NetworkDetails details={connectionDetails} />
     </>
   );
 };
