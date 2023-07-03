@@ -5,7 +5,7 @@ import { useNetInfo } from "@react-native-community/netinfo";
 import Section from "./Section";
 import { styles, getDefaultTextColor } from "../styles";
 
-const NetworkUnavailable = ({ connectionDetails }) => {
+const NetworkAvailable = ({ connectionDetails }) => {
   const isDarkMode = useColorScheme() === "dark";
   const netInfo = useNetInfo();
 
@@ -28,4 +28,4 @@ const NetworkUnavailable = ({ connectionDetails }) => {
   );
 };
 
-export default NetworkUnavailable;
+export default NetworkAvailable;
