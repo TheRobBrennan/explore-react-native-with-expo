@@ -9,7 +9,6 @@
 import React, { useState, useEffect } from "react";
 import {
   SafeAreaView,
-  ScrollView,
   StatusBar,
   StyleSheet,
   Text,
@@ -17,21 +16,28 @@ import {
   View,
 } from "react-native";
 import { useNetInfo } from "@react-native-community/netinfo";
-import { Colors } from "react-native/Libraries/NewAppScreen";
 
 const NetworkCheck = ({ status, type }) => {
   return (
-    <View style={styles.container}>
-      <Text style={styles.statusText}>
-        Connection Status : {status ? "Connected" : "Disconnected"}
-      </Text>
-      <Text style={styles.statusText}>Connection Type : {type}</Text>
+    <View style={[styles.container]}>
+      <Section>
+        <Text style={styles.statusText}>
+          Connection Status : {status ? "Connected" : "Disconnected"}
+        </Text>
+        {status && (
+          <Text style={styles.statusText}>Connection Type : {type}</Text>
+        )}
+      </Section>
     </View>
   );
 };
 
 const NetworkDetails = ({ details }) => {
   return <Text style={[styles.sectionContainer]}>{details}</Text>;
+};
+
+const getDefaultTextColor = (isDarkMode) => {
+  return isDarkMode ? "white" : "black";
 };
 
 const Section = ({ children, title }) => {
@@ -42,7 +48,7 @@ const Section = ({ children, title }) => {
         style={[
           styles.sectionTitle,
           {
-            color: isDarkMode ? Colors.white : Colors.black,
+            color: getDefaultTextColor(isDarkMode),
           },
         ]}
       >
@@ -52,7 +58,7 @@ const Section = ({ children, title }) => {
         style={[
           styles.sectionDescription,
           {
-            color: isDarkMode ? Colors.light : Colors.dark,
+            color: getDefaultTextColor(isDarkMode),
           },
         ]}
       >
@@ -68,7 +74,7 @@ const App = () => {
 
   const isDarkMode = useColorScheme() === "dark";
   const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
+    color: getDefaultTextColor(isDarkMode),
   };
 
   // Every time we have a change in connectivity, this useEffect hook will fire
@@ -81,43 +87,45 @@ const App = () => {
   return (
     <>
       {netInfo.isConnected ? (
-        <SafeAreaView style={backgroundStyle}>
+        <SafeAreaView style={[backgroundStyle, styles.container]}>
           <StatusBar barStyle={isDarkMode ? "light-content" : "dark-content"} />
-          <ScrollView
-            contentInsetAdjustmentBehavior="automatic"
-            style={backgroundStyle}
-          >
-            <View
-              style={{
-                backgroundColor: isDarkMode ? Colors.black : Colors.white,
-              }}
-            >
-              <Section
-                title={
-                  "Connection Status : " + netInfo.isConnected
-                    ? "Connected"
-                    : "Disconnected"
-                }
-              ></Section>
-              <Section title={"You are connected by " + netInfo.type}></Section>
-            </View>
-          </ScrollView>
+          <Section
+            title={
+              "Connection Status : " + netInfo.isConnected
+                ? "Connected"
+                : "Disconnected"
+            }
+          ></Section>
+          <Section title={"You are connected by " + netInfo.type}></Section>
+          <NetworkDetails details={connectionDetails} />
         </SafeAreaView>
       ) : (
-        <NetworkCheck status={netInfo.isConnected} type={netInfo.type} />
+        <SafeAreaView
+          style={[backgroundStyle, styles.container, styles.errorContainer]}
+        >
+          <NetworkCheck status={netInfo.isConnected} type={netInfo.type} />
+        </SafeAreaView>
       )}
-      <NetworkDetails details={connectionDetails} />
     </>
   );
 };
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  errorContainer: {
+    // Here is our red background color for indicating a disconnected state
+    backgroundColor: "#ff0000",
+  },
   sectionContainer: {
-    marginTop: 32,
+    marginTop: 12,
     paddingHorizontal: 24,
   },
   sectionTitle: {
-    fontSize: 24,
+    fontSize: 18,
     fontWeight: "600",
     textAlign: "center",
   },
@@ -125,16 +133,6 @@ const styles = StyleSheet.create({
     marginTop: 8,
     fontSize: 18,
     fontWeight: "400",
-  },
-  highlight: {
-    fontWeight: "700",
-  },
-  container: {
-    flex: 1,
-    padding: 20,
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: "#ff0000",
   },
   statusText: {
     fontSize: 18,
