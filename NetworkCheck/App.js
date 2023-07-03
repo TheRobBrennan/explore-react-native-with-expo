@@ -20,7 +20,7 @@ const App = () => {
       {netInfo.isConnected ? (
         <NetworkConnected connectionDetails={connectionDetails} />
       ) : (
-        <NetworkAvailable connectionDetails={connectionDetails} />
+        <NetworkAvailable />
       )}
     </>
   );
