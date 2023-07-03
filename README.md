@@ -24,6 +24,12 @@ TL;DR Ready to dive in and code?
 # Install dependencies so we can run this project on the web
 % npx expo install react-dom react-native-web @expo/webpack-config
 
+# Install dependencies to install React Native community NetInfo module - https://github.com/react-native-netinfo/react-native-netinfo#readme
+% npx expo install @react-native-community/netinfo
+
+# Install iOS dependencies
+% npx pod-install
+
 # Run your Expo project on mobile and web
 % npx expo start
 ```
