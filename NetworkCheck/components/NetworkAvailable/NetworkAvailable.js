@@ -2,8 +2,8 @@ import React from "react";
 import { SafeAreaView, useColorScheme, Text, View } from "react-native";
 import { useNetInfo } from "@react-native-community/netinfo";
 
-import Section from "./Section";
-import { styles, getDefaultTextColor } from "../styles";
+import Section from "../Section/Section";
+import { styles, getDefaultTextColor } from "../../styles";
 
 const NetworkAvailable = () => {
   const isDarkMode = useColorScheme() === "dark";

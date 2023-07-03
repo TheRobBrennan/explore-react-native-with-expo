@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useNetInfo } from "@react-native-community/netinfo";
 
-import NetworkConnected from "./components/NetworkConnected";
-import NetworkAvailable from "./components/NetworkAvailable";
+import NetworkConnected from "./components/NetworkConnected/NetworkConnected";
+import NetworkAvailable from "./components/NetworkAvailable/NetworkAvailable";
 
 const App = () => {
   const netInfo = useNetInfo();
