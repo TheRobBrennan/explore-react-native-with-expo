@@ -58,3 +58,9 @@ We will use the tutorial at [https://docs.expo.dev/tutorial/](https://docs.expo.
 ### Take a screenshot
 
 [https://docs.expo.dev/tutorial/screenshot/](https://docs.expo.dev/tutorial/screenshot/)
+
+### Handling platform differences
+
+[https://docs.expo.dev/tutorial/platform-differences/](https://docs.expo.dev/tutorial/platform-differences/)
+
+> Android, iOS, and the web have different capabilities. In our case, Android and iOS both are able to capture a screenshot with the react-native-view-shot library, however web browsers cannot.
