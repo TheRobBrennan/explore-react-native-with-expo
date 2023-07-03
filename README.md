@@ -19,4 +19,11 @@ Source - [https://docs.expo.dev/tutorial/create-your-first-app/](https://docs.ex
 
 # Create a new Expo project named StickerSmash
 % npx create-expo-app StickerSmash
+
+# Navigate to the project directory
+% cd StickerSmash
+
+# Download and replace the existing assets directory in the project directory
+# https://docs.expo.dev/static/images/tutorial/sticker-smash-assets.zip
+
 ```
