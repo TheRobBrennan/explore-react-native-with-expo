@@ -40,3 +40,7 @@ We will use the tutorial at [https://docs.expo.dev/tutorial/](https://docs.expo.
 ### Use an image picker
 
 [https://docs.expo.dev/tutorial/image-picker/](https://docs.expo.dev/tutorial/image-picker/)
+
+### Create a modal
+
+[https://docs.expo.dev/tutorial/create-a-modal/](https://docs.expo.dev/tutorial/create-a-modal/)
