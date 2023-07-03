@@ -17,7 +17,6 @@ import {
   View,
 } from "react-native";
 import { useNetInfo } from "@react-native-community/netinfo";
-import { Colors } from "react-native/Libraries/NewAppScreen";
 
 const NetworkCheck = ({ status, type }) => {
   return (
@@ -42,7 +41,7 @@ const Section = ({ children, title }) => {
         style={[
           styles.sectionTitle,
           {
-            color: isDarkMode ? Colors.white : Colors.black,
+            color: isDarkMode ? "white" : "black",
           },
         ]}
       >
@@ -52,7 +51,7 @@ const Section = ({ children, title }) => {
         style={[
           styles.sectionDescription,
           {
-            color: isDarkMode ? Colors.light : Colors.dark,
+            color: isDarkMode ? "white" : "black",
           },
         ]}
       >
@@ -68,7 +67,7 @@ const App = () => {
 
   const isDarkMode = useColorScheme() === "dark";
   const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
+    color: isDarkMode ? "white" : "black",
   };
 
   // Every time we have a change in connectivity, this useEffect hook will fire
@@ -89,7 +88,7 @@ const App = () => {
           >
             <View
               style={{
-                backgroundColor: isDarkMode ? Colors.black : Colors.white,
+                color: isDarkMode ? "white" : "black",
               }}
             >
               <Section
