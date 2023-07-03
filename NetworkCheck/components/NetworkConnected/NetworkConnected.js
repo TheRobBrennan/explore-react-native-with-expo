@@ -2,10 +2,10 @@ import React from "react";
 import { SafeAreaView, StatusBar, useColorScheme } from "react-native";
 import { useNetInfo } from "@react-native-community/netinfo";
 
-import NetworkDetails from "./NetworkDetails";
-import Section from "./Section";
+import NetworkDetails from "../NetworkDetails/NetworkDetails";
+import Section from "../Section/Section";
 
-import { styles, getDefaultTextColor } from "../styles";
+import { styles, getDefaultTextColor } from "../../styles";
 
 const NetworkConnected = ({ connectionDetails }) => {
   const isDarkMode = useColorScheme() === "dark";
@@ -17,7 +17,13 @@ const NetworkConnected = ({ connectionDetails }) => {
 
   return (
     <SafeAreaView style={[backgroundStyle, styles.container]}>
-      <StatusBar barStyle={isDarkMode ? "light-content" : "dark-content"} />
+      <StatusBar
+        barStyle={
+          // 2023.07.03 => I am not interested in verifying how the React Native status bar works in dark mode and am ignoring for code coverage reporting
+          /* istanbul ignore next */
+          isDarkMode ? "light-content" : "dark-content"
+        }
+      />
       <Section
         title={`${
           netInfo.type != "other"
