@@ -24,7 +24,6 @@ describe("NetworkAvailable WITH network connectivity", () => {
 
   test("should render using react-test-renderer", () => {
     const result = renderer.create(<NetworkAvailable />).toJSON();
-    console.log(result);
     expect(result).toBeDefined();
   });
   test("should render using render from @testing-library/react-native", () => {
