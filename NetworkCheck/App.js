@@ -104,7 +104,16 @@ const App = () => {
       ) : (
         <NetworkCheck status={netInfo.isConnected} type={netInfo.type} />
       )}
-      <Text>{connectionDetails}</Text>
+      <Text
+        style={[
+          styles.sectionContainer,
+          {
+            color: isDarkMode ? Colors.white : Colors.black,
+          },
+        ]}
+      >
+        {connectionDetails}
+      </Text>
     </>
   );
 };
