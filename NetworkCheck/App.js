@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { SafeAreaView, StatusBar, useColorScheme } from "react-native";
+import { SafeAreaView, useColorScheme } from "react-native";
 import { useNetInfo } from "@react-native-community/netinfo";
 
 import NetworkCheck from "./components/NetworkCheck";
-import NetworkDetails from "./components/NetworkDetails";
-import Section from "./components/Section";
+import NetworkConnected from "./components/NetworkConnected";
 
 import { getDefaultTextColor } from "./lib";
 import { styles } from "./styles";
@@ -28,18 +27,7 @@ const App = () => {
   return (
     <>
       {netInfo.isConnected ? (
-        <SafeAreaView style={[backgroundStyle, styles.container]}>
-          <StatusBar barStyle={isDarkMode ? "light-content" : "dark-content"} />
-          <Section
-            title={
-              "Connection Status : " + netInfo.isConnected
-                ? "Connected"
-                : "Disconnected"
-            }
-          ></Section>
-          <Section title={"You are connected by " + netInfo.type}></Section>
-          <NetworkDetails details={connectionDetails} />
-        </SafeAreaView>
+        <NetworkConnected connectionDetails={connectionDetails} />
       ) : (
         <SafeAreaView
           style={[backgroundStyle, styles.container, styles.errorContainer]}
