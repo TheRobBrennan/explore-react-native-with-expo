@@ -26,4 +26,6 @@ Source - [https://docs.expo.dev/tutorial/create-your-first-app/](https://docs.ex
 # Download and replace the existing assets directory in the project directory
 # https://docs.expo.dev/static/images/tutorial/sticker-smash-assets.zip
 
+# Install dependencies so we can run this project on the web
+% npx expo install react-dom react-native-web @expo/webpack-config
 ```
