@@ -36,6 +36,10 @@ const NetworkDetails = ({ details }) => {
   return <Text style={[styles.sectionContainer]}>{details}</Text>;
 };
 
+const getDefaultTextColor = (isDarkMode) => {
+  return isDarkMode ? "white" : "black";
+};
+
 const Section = ({ children, title }) => {
   const isDarkMode = useColorScheme() === "dark";
   return (
@@ -44,7 +48,7 @@ const Section = ({ children, title }) => {
         style={[
           styles.sectionTitle,
           {
-            color: isDarkMode ? "white" : "black",
+            color: getDefaultTextColor(isDarkMode),
           },
         ]}
       >
@@ -54,7 +58,7 @@ const Section = ({ children, title }) => {
         style={[
           styles.sectionDescription,
           {
-            color: isDarkMode ? "white" : "black",
+            color: getDefaultTextColor(isDarkMode),
           },
         ]}
       >
@@ -70,7 +74,7 @@ const App = () => {
 
   const isDarkMode = useColorScheme() === "dark";
   const backgroundStyle = {
-    color: isDarkMode ? "white" : "black",
+    color: getDefaultTextColor(isDarkMode),
   };
 
   // Every time we have a change in connectivity, this useEffect hook will fire
