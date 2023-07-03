@@ -44,3 +44,13 @@ We will use the tutorial at [https://docs.expo.dev/tutorial/](https://docs.expo.
 ### Create a modal
 
 [https://docs.expo.dev/tutorial/create-a-modal/](https://docs.expo.dev/tutorial/create-a-modal/)
+
+### Add gestures
+
+[https://docs.expo.dev/tutorial/gestures/](https://docs.expo.dev/tutorial/gestures/)
+
+> In this chapter, we are going to add two different gestures using the React Native Gesture Handler library:
+>
+> - Double tap to scale the size of the emoji sticker.
+>
+> - Pan to move the emoji sticker around the screen so that the user can place the sticker anywhere on the image.
