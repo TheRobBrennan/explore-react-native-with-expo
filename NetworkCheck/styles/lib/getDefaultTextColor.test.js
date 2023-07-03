@@ -1,4 +1,4 @@
-import { getDefaultTextColor } from "./index";
+import { getDefaultTextColor } from "../index";
 
 describe("getDefaultTextColor", () => {
   test("should return white text when dark mode is ENABLED", () => {
