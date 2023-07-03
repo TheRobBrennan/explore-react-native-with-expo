@@ -1,8 +1,7 @@
 import React from "react";
 import { Text, useColorScheme, View } from "react-native";
 
-import { getDefaultTextColor } from "../lib";
-import { styles } from "../styles";
+import { styles, getDefaultTextColor } from "../styles";
 
 const Section = ({ children, title }) => {
   const isDarkMode = useColorScheme() === "dark";
