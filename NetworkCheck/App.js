@@ -9,7 +9,6 @@
 import React, { useState, useEffect } from "react";
 import {
   SafeAreaView,
-  ScrollView,
   StatusBar,
   StyleSheet,
   Text,
@@ -20,11 +19,15 @@ import { useNetInfo } from "@react-native-community/netinfo";
 
 const NetworkCheck = ({ status, type }) => {
   return (
-    <View style={styles.container}>
-      <Text style={styles.statusText}>
-        Connection Status : {status ? "Connected" : "Disconnected"}
-      </Text>
-      <Text style={styles.statusText}>Connection Type : {type}</Text>
+    <View style={[styles.container]}>
+      <Section>
+        <Text style={styles.statusText}>
+          Connection Status : {status ? "Connected" : "Disconnected"}
+        </Text>
+        {status && (
+          <Text style={styles.statusText}>Connection Type : {type}</Text>
+        )}
+      </Section>
     </View>
   );
 };
@@ -82,41 +85,39 @@ const App = () => {
       {netInfo.isConnected ? (
         <SafeAreaView style={backgroundStyle}>
           <StatusBar barStyle={isDarkMode ? "light-content" : "dark-content"} />
-          <ScrollView
-            contentInsetAdjustmentBehavior="automatic"
-            style={backgroundStyle}
-          >
-            <View
-              style={{
-                color: isDarkMode ? "white" : "black",
-              }}
-            >
-              <Section
-                title={
-                  "Connection Status : " + netInfo.isConnected
-                    ? "Connected"
-                    : "Disconnected"
-                }
-              ></Section>
-              <Section title={"You are connected by " + netInfo.type}></Section>
-            </View>
-          </ScrollView>
+          <Section
+            title={
+              "Connection Status : " + netInfo.isConnected
+                ? "Connected"
+                : "Disconnected"
+            }
+          ></Section>
+          <Section title={"You are connected by " + netInfo.type}></Section>
+          <NetworkDetails details={connectionDetails} />
         </SafeAreaView>
       ) : (
-        <NetworkCheck status={netInfo.isConnected} type={netInfo.type} />
+        <SafeAreaView style={[backgroundStyle, styles.container]}>
+          <NetworkCheck status={netInfo.isConnected} type={netInfo.type} />
+        </SafeAreaView>
       )}
-      <NetworkDetails details={connectionDetails} />
     </>
   );
 };
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    padding: 20,
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "#ff0000",
+  },
   sectionContainer: {
     marginTop: 32,
     paddingHorizontal: 24,
   },
   sectionTitle: {
-    fontSize: 24,
+    fontSize: 18,
     fontWeight: "600",
     textAlign: "center",
   },
@@ -124,16 +125,6 @@ const styles = StyleSheet.create({
     marginTop: 8,
     fontSize: 18,
     fontWeight: "400",
-  },
-  highlight: {
-    fontWeight: "700",
-  },
-  container: {
-    flex: 1,
-    padding: 20,
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: "#ff0000",
   },
   statusText: {
     fontSize: 18,
