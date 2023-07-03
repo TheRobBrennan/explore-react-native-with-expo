@@ -3,8 +3,7 @@ import { SafeAreaView, useColorScheme, Text, View } from "react-native";
 import { useNetInfo } from "@react-native-community/netinfo";
 
 import Section from "./Section";
-import { getDefaultTextColor } from "../lib";
-import { styles } from "../styles";
+import { styles, getDefaultTextColor } from "../styles";
 
 const NetworkUnavailable = ({ connectionDetails }) => {
   const isDarkMode = useColorScheme() === "dark";
