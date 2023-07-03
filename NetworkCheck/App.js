@@ -87,7 +87,7 @@ const App = () => {
   return (
     <>
       {netInfo.isConnected ? (
-        <SafeAreaView style={backgroundStyle}>
+        <SafeAreaView style={[backgroundStyle, styles.container]}>
           <StatusBar barStyle={isDarkMode ? "light-content" : "dark-content"} />
           <Section
             title={
@@ -100,7 +100,9 @@ const App = () => {
           <NetworkDetails details={connectionDetails} />
         </SafeAreaView>
       ) : (
-        <SafeAreaView style={[backgroundStyle, styles.container]}>
+        <SafeAreaView
+          style={[backgroundStyle, styles.container, styles.errorContainer]}
+        >
           <NetworkCheck status={netInfo.isConnected} type={netInfo.type} />
         </SafeAreaView>
       )}
@@ -111,13 +113,15 @@ const App = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 20,
     alignItems: "center",
     justifyContent: "center",
+  },
+  errorContainer: {
+    // Here is our red background color for indicating a disconnected state
     backgroundColor: "#ff0000",
   },
   sectionContainer: {
-    marginTop: 32,
+    marginTop: 12,
     paddingHorizontal: 24,
   },
   sectionTitle: {
