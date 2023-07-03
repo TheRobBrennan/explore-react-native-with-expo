@@ -66,6 +66,9 @@ const Section = ({ children, title }) => {
 };
 
 const App = () => {
+  const netInfo = useNetInfo();
+  const [connectionDetails, setConnectionDetails] = useState("");
+
   const [connectionStatus, setConnectionStatus] = useState(false);
   const [connectionType, setConnectionType] = useState(null);
 
@@ -86,6 +89,12 @@ const App = () => {
       netInfoSubscription && netInfoSubscription();
     };
   }, []);
+
+  useEffect(() => {
+    setConnectionDetails(
+      `net info changed, new state: ${JSON.stringify(netInfo)}`
+    );
+  }, [netInfo]);
 
   return (
     <>
@@ -118,6 +127,7 @@ const App = () => {
       ) : (
         <NetworkCheck status={connectionStatus} type={connectionType} />
       )}
+      <Text>{connectionDetails}</Text>
     </>
   );
 };
