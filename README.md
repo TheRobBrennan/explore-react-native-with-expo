@@ -8,7 +8,7 @@ We will use the tutorial at [https://docs.expo.dev/tutorial/](https://docs.expo.
 
 ### Create your first app
 
-Source - [https://docs.expo.dev/tutorial/create-your-first-app/](https://docs.expo.dev/tutorial/create-your-first-app/)
+[https://docs.expo.dev/tutorial/create-your-first-app/](https://docs.expo.dev/tutorial/create-your-first-app/)
 
 ```sh
 # PREREQUISITES
@@ -32,3 +32,7 @@ Source - [https://docs.expo.dev/tutorial/create-your-first-app/](https://docs.ex
 # Run your Expo project on mobile and web
 % npx expo start
 ```
+
+### Build a screen
+
+[https://docs.expo.dev/tutorial/build-a-screen/](https://docs.expo.dev/tutorial/build-a-screen/)
