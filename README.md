@@ -24,11 +24,12 @@ TL;DR Ready to dive in and code?
 # Install dependencies so we can run this project on the web
 % npx expo install react-dom react-native-web @expo/webpack-config
 
-# Install dependencies to install React Native community NetInfo module - https://github.com/react-native-netinfo/react-native-netinfo#readme
+# PRO TIP: Install dependencies to install React Native community NetInfo module - https://github.com/react-native-netinfo/react-native-netinfo#readme
 % npx expo install @react-native-community/netinfo
 
-# Install iOS dependencies
-% npx pod-install
+# PRO TIP: Install dependencies to add navigation with Expo - https://kadikraman.github.io/react-native-v2/navigation-expo
+% npx expo install react-native-gesture-handler react-native-reanimated react-native-screens react-native-safe-area-context @react-native-community/masked-view
+% npx expo install @react-navigation/stack
 
 # Run your Expo project on mobile and web
 % npx expo start
