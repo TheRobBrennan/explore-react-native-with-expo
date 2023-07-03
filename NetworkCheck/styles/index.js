@@ -1,2 +1,2 @@
 export * from "./global";
-export * from "./getDefaultTextColor";
+export * from "./lib/getDefaultTextColor";
