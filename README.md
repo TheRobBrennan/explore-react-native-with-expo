@@ -54,3 +54,7 @@ We will use the tutorial at [https://docs.expo.dev/tutorial/](https://docs.expo.
 > - Double tap to scale the size of the emoji sticker.
 >
 > - Pan to move the emoji sticker around the screen so that the user can place the sticker anywhere on the image.
+
+### Take a screenshot
+
+[https://docs.expo.dev/tutorial/screenshot/](https://docs.expo.dev/tutorial/screenshot/)
