@@ -28,4 +28,7 @@ Source - [https://docs.expo.dev/tutorial/create-your-first-app/](https://docs.ex
 
 # Install dependencies so we can run this project on the web
 % npx expo install react-dom react-native-web @expo/webpack-config
+
+# Run your Expo project on mobile and web
+% npx expo start
 ```
