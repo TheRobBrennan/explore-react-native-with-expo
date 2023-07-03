@@ -16,15 +16,9 @@ import {
   useColorScheme,
   View,
 } from "react-native";
-import NetInfo, { useNetInfo } from "@react-native-community/netinfo";
+import { useNetInfo } from "@react-native-community/netinfo";
 
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from "react-native/Libraries/NewAppScreen";
+import { Colors, Header } from "react-native/Libraries/NewAppScreen";
 
 const NetworkCheck = ({ status, type }) => {
   return (
@@ -69,36 +63,21 @@ const App = () => {
   const netInfo = useNetInfo();
   const [connectionDetails, setConnectionDetails] = useState("");
 
-  const [connectionStatus, setConnectionStatus] = useState(false);
-  const [connectionType, setConnectionType] = useState(null);
-
   const isDarkMode = useColorScheme() === "dark";
-
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
 
-  const handleNetworkChange = (state) => {
-    setConnectionStatus(state.isConnected);
-    setConnectionType(state.type);
-  };
-
-  useEffect(() => {
-    const netInfoSubscription = NetInfo.addEventListener(handleNetworkChange);
-    return () => {
-      netInfoSubscription && netInfoSubscription();
-    };
-  }, []);
-
+  // Every time we have a change in connectivity, this useEffect hook will fire
   useEffect(() => {
     setConnectionDetails(
-      `net info changed, new state: ${JSON.stringify(netInfo)}`
+      `Connectivity has changed: ${JSON.stringify(netInfo, null, 2)}`
     );
   }, [netInfo]);
 
   return (
     <>
-      {connectionStatus ? (
+      {netInfo.isConnected ? (
         <SafeAreaView style={backgroundStyle}>
           <StatusBar barStyle={isDarkMode ? "light-content" : "dark-content"} />
           <ScrollView
@@ -113,19 +92,17 @@ const App = () => {
             >
               <Section
                 title={
-                  "Connection Status : " + connectionStatus
+                  "Connection Status : " + netInfo.isConnected
                     ? "Connected"
                     : "Disconnected"
                 }
               ></Section>
-              <Section
-                title={"You are connected by " + connectionType}
-              ></Section>
+              <Section title={"You are connected by " + netInfo.type}></Section>
             </View>
           </ScrollView>
         </SafeAreaView>
       ) : (
-        <NetworkCheck status={connectionStatus} type={connectionType} />
+        <NetworkCheck status={netInfo.isConnected} type={netInfo.type} />
       )}
       <Text>{connectionDetails}</Text>
     </>
