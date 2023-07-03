@@ -15,6 +15,11 @@ import EmojiSticker from "./components/EmojiSticker";
 import IconButton from "./components/IconButton";
 import ImageViewer from "./components/ImageViewer";
 
+// OPTIONAL: Instead of disappearing as soon as the app is loaded, we can control how long we want our splash screen to appear
+// import * as SplashScreen from "expo-splash-screen";
+// SplashScreen.preventAutoHideAsync();
+// setTimeout(SplashScreen.hideAsync, 5000);
+
 const PlaceholderImage = require("./assets/images/background-image.png");
 
 export default function App() {
