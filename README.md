@@ -6,6 +6,36 @@ This project will explore developing native iOS, Android, and web applications u
 
 We will use the tutorial at [https://docs.expo.dev/tutorial/](https://docs.expo.dev/tutorial/) as our starting point.
 
+TL;DR Ready to dive in and code?
+
+```sh
+# PREREQUISITES
+# - Install Expo Go on a physical device - https://expo.dev/client
+# - Prepare for development by installing the required tools - https://docs.expo.dev/get-started/installation/#requirements
+# - OPTIONAL:
+# -   - If you are unfamiliar with React, please take a moment and check out the official React tutorial - https://react.dev/learn
+
+# Create a new Expo project named StickerSmash
+% npx create-expo-app <my_expo_project_name>
+
+# Navigate to the project directory
+% cd <my_expo_project_name>
+
+# Install dependencies so we can run this project on the web
+% npx expo install react-dom react-native-web @expo/webpack-config
+
+# Install dependencies to install React Native community NetInfo module - https://github.com/react-native-netinfo/react-native-netinfo#readme
+% npx expo install @react-native-community/netinfo
+
+# Install iOS dependencies
+% npx pod-install
+
+# Run your Expo project on mobile and web
+% npx expo start
+```
+
+## Tutorial
+
 ### Create your first app
 
 [https://docs.expo.dev/tutorial/create-your-first-app/](https://docs.expo.dev/tutorial/create-your-first-app/)
