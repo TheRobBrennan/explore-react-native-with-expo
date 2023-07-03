@@ -17,7 +17,7 @@ import {
   View,
 } from "react-native";
 import { useNetInfo } from "@react-native-community/netinfo";
-import { Colors, Header } from "react-native/Libraries/NewAppScreen";
+import { Colors } from "react-native/Libraries/NewAppScreen";
 
 const NetworkCheck = ({ status, type }) => {
   return (
@@ -87,7 +87,6 @@ const App = () => {
             contentInsetAdjustmentBehavior="automatic"
             style={backgroundStyle}
           >
-            <Header />
             <View
               style={{
                 backgroundColor: isDarkMode ? Colors.black : Colors.white,
