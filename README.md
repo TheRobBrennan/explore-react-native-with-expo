@@ -36,3 +36,7 @@ We will use the tutorial at [https://docs.expo.dev/tutorial/](https://docs.expo.
 ### Build a screen
 
 [https://docs.expo.dev/tutorial/build-a-screen/](https://docs.expo.dev/tutorial/build-a-screen/)
+
+### Use an image picker
+
+[https://docs.expo.dev/tutorial/image-picker/](https://docs.expo.dev/tutorial/image-picker/)
