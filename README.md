@@ -28,8 +28,7 @@ TL;DR Ready to dive in and code?
 % npx expo install @react-native-community/netinfo
 
 # PRO TIP: Install dependencies to add navigation with Expo - https://kadikraman.github.io/react-native-v2/navigation-expo
-% npx expo install react-native-gesture-handler react-native-reanimated react-native-screens react-native-safe-area-context @react-native-community/masked-view
-% npx expo install @react-navigation/stack
+% npx expo install react-native-gesture-handler react-native-reanimated react-native-screens react-native-safe-area-context @react-native-community/masked-view @react-navigation/stack
 
 # Run your Expo project on mobile and web
 % npx expo start
