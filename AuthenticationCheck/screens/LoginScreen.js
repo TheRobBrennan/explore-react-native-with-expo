@@ -1,12 +1,19 @@
 import React, { useState } from "react";
 import { View, Text, TextInput, Button, Alert } from "react-native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const LoginScreen = ({ navigation }) => {
   const [email, setEmail] = useState("demo");
   const [password, setPassword] = useState("demo");
 
-  const handleLogin = () => {
+  const handleLogin = async () => {
+    // Log user activity
+    console.log(`'${email}' is attempting to login`);
+
     // Perform authentication logic here, e.g., calling an API endpoint
+
+    // Store the selected organization in local storage (AsyncStorage)
+    await AsyncStorage.setItem("userId", email);
 
     // Dummy authentication check for demonstration purposes
     if (email === "demo" && password === "demo") {

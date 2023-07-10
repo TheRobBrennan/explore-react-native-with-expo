@@ -3,7 +3,6 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 
 import LoginScreen from "../screens/LoginScreen";
-import LogoutScreen from "../screens/LogoutScreen";
 import OrganizationScreen from "../screens/OrganizationScreen";
 import HomeScreen from "../screens/HomeScreen";
 
@@ -19,7 +18,6 @@ const AppNavigator = () => {
           component={OrganizationScreen}
         />
         <Stack.Screen name="HomeScreen" component={HomeScreen} />
-        <Stack.Screen name="LogoutScreen" component={LogoutScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

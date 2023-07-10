@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { View, Text, Button } from "react-native";
+import { View, Text, Button, StyleSheet } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+
+import SelectedOrganization from "../components/SelectedOrganization";
 
 const HomeScreen = ({ navigation }) => {
   const [selectedOrganization, setSelectedOrganization] = useState("");
-
-  const handleLogout = () => {
-    navigation.navigate("LoginScreen");
-  };
 
   useEffect(() => {
     // Retrieve the selected organization from local storage (AsyncStorage)
@@ -23,16 +21,54 @@ const HomeScreen = ({ navigation }) => {
     fetchSelectedOrganization();
   }, []);
 
+  const handleLogout = async () => {
+    try {
+      // Log user activity
+      const userId = await AsyncStorage.getItem("userId");
+      console.log(`'${userId}' has logged out`);
+
+      // Clear the selected organization from local storage (AsyncStorage)
+      await AsyncStorage.removeItem("selectedOrganization");
+      await AsyncStorage.removeItem("userId");
+
+      // Navigate to the login screen
+      navigation.navigate("LoginScreen");
+    } catch (error) {
+      console.log("Error logging out:", error);
+    }
+  };
+
   return (
     <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
       <Text style={{ fontSize: 24 }}>Home Screen</Text>
-      <Text style={{ marginTop: 20 }}>
-        Selected Organization:{" "}
-        {selectedOrganization ? selectedOrganization : "None"}
-      </Text>
+      <SelectedOrganization style={{ marginTop: 20, flex: 1 }} />
       <Button title="Logout" onPress={handleLogout} />
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "white",
+  },
+  title: {
+    fontSize: 24,
+    marginVertical: 20,
+    alignSelf: "center",
+  },
+  organizationItem: {
+    padding: 10,
+    marginBottom: 10,
+    borderWidth: 1,
+    borderColor: "gray",
+    alignSelf: "center",
+  },
+  selectedOrganization: {
+    flex: 1,
+    marginTop: 20,
+    alignSelf: "center",
+  },
+});
 
 export default HomeScreen;

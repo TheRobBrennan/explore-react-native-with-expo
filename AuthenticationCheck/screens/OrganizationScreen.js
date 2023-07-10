@@ -8,6 +8,8 @@ import {
 } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
+import SelectedOrganization from "../components/SelectedOrganization";
+
 const OrganizationScreen = ({ navigation }) => {
   const [organizations, setOrganizations] = useState([]);
   const [selectedOrganization, setSelectedOrganization] = useState("");
@@ -36,6 +38,11 @@ const OrganizationScreen = ({ navigation }) => {
   }, []);
 
   const handleOrganizationSelect = async (organization) => {
+    // Log user activity
+    const userId = await AsyncStorage.getItem("userId");
+    console.log(
+      `'${userId}' selected organization ${JSON.stringify(organization)}`
+    );
     setSelectedOrganization(organization.name);
 
     try {
@@ -64,10 +71,7 @@ const OrganizationScreen = ({ navigation }) => {
           </TouchableOpacity>
         )}
       />
-      <Text style={styles.selectedOrganization}>
-        Selected Organization:{" "}
-        {selectedOrganization ? selectedOrganization : "None"}
-      </Text>
+      <SelectedOrganization />
     </SafeAreaView>
   );
 };
