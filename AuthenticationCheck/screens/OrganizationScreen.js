@@ -90,6 +90,7 @@ const styles = StyleSheet.create({
     alignSelf: "center",
   },
   selectedOrganization: {
+    flex: 1,
     marginTop: 20,
     alignSelf: "center",
   },
