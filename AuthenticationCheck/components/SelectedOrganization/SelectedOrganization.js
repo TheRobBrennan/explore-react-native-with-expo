@@ -28,7 +28,9 @@ const SelectedOrganization = () => {
 
   return (
     <Text style={styles.selectedOrganization}>
-      {selectedOrganization ? selectedOrganization : ""}
+      {selectedOrganization
+        ? `Your active organization is: ${selectedOrganization}`
+        : ""}
     </Text>
   );
 };

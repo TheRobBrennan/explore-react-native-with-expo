@@ -13,7 +13,8 @@ import { auditUserActivity } from "../../lib";
 
 const OrganizationScreen = ({ navigation }) => {
   const [organizations, setOrganizations] = useState([]);
-  const [selectedOrganization, setSelectedOrganization] = useState("");
+  const [_, setSelectedOrganization] = useState("");
+  const [displayTitle, setDisplayTitle] = useState(false);
 
   useEffect(() => {
     // Fetch organizations from an API endpoint or local data source
@@ -30,11 +31,24 @@ const OrganizationScreen = ({ navigation }) => {
         // Dummy organizations data for demonstration purposes
         const organizationsData = [
           { id: 1, name: "therobbrennan.com" },
-          { id: 2, name: "woatw.com" },
-          { id: 3, name: "platypoose.com" },
+          // { id: 2, name: "woatw.com" },
+          // { id: 3, name: "platypoose.com" },
         ];
 
         setOrganizations(organizationsData);
+
+        // If a user belongs to only one organization, let's set it automatically for them and redirect
+        if (organizationsData?.length === 1) {
+          setDisplayTitle(false);
+          const defaultOrganization = organizationsData[0];
+          // Log user activity
+          auditUserActivity(
+            `will have organization ${defaultOrganization.name} automatically selected`
+          );
+          await handleOrganizationSelect(defaultOrganization);
+        }
+
+        setDisplayTitle(true);
       } catch (error) {
         // Audit user activity
         auditUserActivity(
@@ -51,8 +65,6 @@ const OrganizationScreen = ({ navigation }) => {
   const handleOrganizationSelect = async (organization) => {
     // Audit user activity
     auditUserActivity(`selected organization ${JSON.stringify(organization)}`);
-
-    setSelectedOrganization(organization.name);
 
     try {
       // Store the selected details using AsyncStorage
@@ -71,22 +83,24 @@ const OrganizationScreen = ({ navigation }) => {
   };
 
   return (
-    <SafeAreaView style={styles.container}>
-      <Text style={styles.title}>Select Organization</Text>
-      <FlatList
-        data={organizations}
-        keyExtractor={(item) => item.id.toString()}
-        renderItem={({ item }) => (
-          <TouchableOpacity
-            style={styles.organizationItem}
-            onPress={() => handleOrganizationSelect(item)}
-          >
-            <Text>{item.name}</Text>
-          </TouchableOpacity>
-        )}
-      />
-      <SelectedOrganization />
-    </SafeAreaView>
+    displayTitle && (
+      <SafeAreaView style={styles.container}>
+        <Text style={styles.title}>Please select an organization</Text>
+        <FlatList
+          data={organizations}
+          keyExtractor={(item) => item.id.toString()}
+          renderItem={({ item }) => (
+            <TouchableOpacity
+              style={styles.organizationItem}
+              onPress={() => handleOrganizationSelect(item)}
+            >
+              <Text>{item.name}</Text>
+            </TouchableOpacity>
+          )}
+        />
+        <SelectedOrganization />
+      </SafeAreaView>
+    )
   );
 };
 
