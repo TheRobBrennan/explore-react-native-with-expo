@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { View, Text, TextInput, Button, Alert } from "react-native";
+import { View, Text, TextInput, Button } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-import { auditUserActivity } from "../../lib";
+import { auditUserActivity, alert } from "../../lib";
 
 const LoginScreen = ({ navigation }) => {
   const [email, setEmail] = useState("demo");
@@ -29,10 +29,7 @@ const LoginScreen = ({ navigation }) => {
       auditUserActivity("failed to login with valid credentials");
 
       // Display an error message for invalid credentials
-      Alert.alert(
-        "Invalid credentials",
-        "Please enter valid email and password."
-      );
+      alert("Invalid credentials", "Please enter valid email and password.");
     }
   };
 
