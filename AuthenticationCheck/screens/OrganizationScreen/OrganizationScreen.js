@@ -30,8 +30,8 @@ const OrganizationScreen = ({ navigation }) => {
         // Dummy organizations data for demonstration purposes
         const organizationsData = [
           { id: 1, name: "therobbrennan.com" },
-          // { id: 2, name: "woatw.com" },
-          // { id: 3, name: "platypoose.com" },
+          { id: 2, name: "woatw.com" },
+          { id: 3, name: "platypoose.com" },
         ];
 
         setOrganizations(organizationsData);
