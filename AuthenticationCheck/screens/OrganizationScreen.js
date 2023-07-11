@@ -46,7 +46,7 @@ const OrganizationScreen = ({ navigation }) => {
     setSelectedOrganization(organization.name);
 
     try {
-      // Store the selected organization in local storage (AsyncStorage)
+      // Store the selected details using AsyncStorage
       await AsyncStorage.setItem("selectedOrganization", organization.name);
     } catch (error) {
       console.log("Error storing selected organization:", error);

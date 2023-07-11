@@ -6,7 +6,7 @@ const SelectedOrganization = () => {
   const [selectedOrganization, setSelectedOrganization] = useState("");
 
   useEffect(() => {
-    // Retrieve the selected organization from local storage (AsyncStorage)
+    // Retrieve the selected organization from AsyncStorage
     const fetchSelectedOrganization = async () => {
       try {
         const organization = await AsyncStorage.getItem("selectedOrganization");

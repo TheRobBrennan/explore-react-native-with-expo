@@ -12,7 +12,7 @@ const LoginScreen = ({ navigation }) => {
 
     // Perform authentication logic here, e.g., calling an API endpoint
 
-    // Store the selected organization in local storage (AsyncStorage)
+    // Store the selected details using AsyncStorage
     await AsyncStorage.setItem("userId", email);
 
     // Dummy authentication check for demonstration purposes

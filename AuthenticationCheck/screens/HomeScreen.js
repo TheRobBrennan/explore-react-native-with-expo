@@ -8,7 +8,7 @@ const HomeScreen = ({ navigation }) => {
   const [selectedOrganization, setSelectedOrganization] = useState("");
 
   useEffect(() => {
-    // Retrieve the selected organization from local storage (AsyncStorage)
+    // Retrieve the selected organization from AsyncStorage
     const fetchSelectedOrganization = async () => {
       try {
         const organization = await AsyncStorage.getItem("selectedOrganization");
@@ -27,7 +27,7 @@ const HomeScreen = ({ navigation }) => {
       const userId = await AsyncStorage.getItem("userId");
       console.log(`'${userId}' has logged out`);
 
-      // Clear the selected organization from local storage (AsyncStorage)
+      // Clear the selected details from AsyncStorage
       await AsyncStorage.removeItem("selectedOrganization");
       await AsyncStorage.removeItem("userId");
 
@@ -38,10 +38,26 @@ const HomeScreen = ({ navigation }) => {
     }
   };
 
+  const handleOrganizationSelect = async () => {
+    // Log user activity
+    const userId = await AsyncStorage.getItem("userId");
+    console.log(`'${userId}' would like to change to another organization`);
+
+    // Clear the selected organization from AsyncStorage
+    await AsyncStorage.removeItem("selectedOrganization");
+
+    // Navigate to the login screen
+    navigation.navigate("OrganizationScreen");
+  };
+
   return (
     <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
       <Text style={{ fontSize: 24 }}>Home Screen</Text>
       <SelectedOrganization style={{ marginTop: 20, flex: 1 }} />
+      <Button
+        title="Change active organization"
+        onPress={handleOrganizationSelect}
+      />
       <Button title="Logout" onPress={handleLogout} />
     </View>
   );
