@@ -13,7 +13,6 @@ import { auditUserActivity } from "../../lib";
 
 const OrganizationScreen = ({ navigation }) => {
   const [organizations, setOrganizations] = useState([]);
-  const [_, setSelectedOrganization] = useState("");
   const [displayTitle, setDisplayTitle] = useState(false);
 
   useEffect(() => {
