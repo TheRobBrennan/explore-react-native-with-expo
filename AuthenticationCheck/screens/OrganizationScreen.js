@@ -9,6 +9,7 @@ import {
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import SelectedOrganization from "../components/SelectedOrganization";
+import { auditUserActivity } from "../lib";
 
 const OrganizationScreen = ({ navigation }) => {
   const [organizations, setOrganizations] = useState([]);
@@ -18,6 +19,11 @@ const OrganizationScreen = ({ navigation }) => {
     // Fetch organizations from an API endpoint or local data source
     const fetchOrganizations = async () => {
       try {
+        // Log user activity
+        auditUserActivity(
+          "requested details for all organizations associated with their account"
+        );
+
         // Simulating API call delay
         await new Promise((resolve) => setTimeout(resolve, 1000));
 
@@ -30,7 +36,12 @@ const OrganizationScreen = ({ navigation }) => {
 
         setOrganizations(organizationsData);
       } catch (error) {
-        console.log("Error fetching organizations:", error);
+        // Audit user activity
+        auditUserActivity(
+          `received the following error when requesting details for all organizations associated with their account:\n\t${error}`
+        );
+
+        console.error("Error fetching organizations:", error);
       }
     };
 
@@ -38,18 +49,21 @@ const OrganizationScreen = ({ navigation }) => {
   }, []);
 
   const handleOrganizationSelect = async (organization) => {
-    // Log user activity
-    const userId = await AsyncStorage.getItem("userId");
-    console.log(
-      `'${userId}' selected organization ${JSON.stringify(organization)}`
-    );
+    // Audit user activity
+    auditUserActivity(`selected organization ${JSON.stringify(organization)}`);
+
     setSelectedOrganization(organization.name);
 
     try {
       // Store the selected details using AsyncStorage
       await AsyncStorage.setItem("selectedOrganization", organization.name);
     } catch (error) {
-      console.log("Error storing selected organization:", error);
+      // Audit user activity
+      auditUserActivity(
+        `received the following error when selecting the ${organization.name} organization:\n\t${error}`
+      );
+
+      console.error("Error storing selected organization:", error);
     }
 
     // Navigate to the home screen after organization selection

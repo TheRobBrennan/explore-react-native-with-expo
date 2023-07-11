@@ -3,6 +3,7 @@ import { View, Text, Button, StyleSheet } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import SelectedOrganization from "../components/SelectedOrganization";
+import { auditUserActivity } from "../lib";
 
 const HomeScreen = ({ navigation }) => {
   const [selectedOrganization, setSelectedOrganization] = useState("");
@@ -14,7 +15,7 @@ const HomeScreen = ({ navigation }) => {
         const organization = await AsyncStorage.getItem("selectedOrganization");
         setSelectedOrganization(organization);
       } catch (error) {
-        console.log("Error retrieving selected organization:", error);
+        console.error("Error retrieving selected organization:", error);
       }
     };
 
@@ -23,9 +24,8 @@ const HomeScreen = ({ navigation }) => {
 
   const handleLogout = async () => {
     try {
-      // Log user activity
-      const userId = await AsyncStorage.getItem("userId");
-      console.log(`'${userId}' has logged out`);
+      // Audit user activity
+      auditUserActivity("has logged out");
 
       // Clear the selected details from AsyncStorage
       await AsyncStorage.removeItem("selectedOrganization");
@@ -34,14 +34,18 @@ const HomeScreen = ({ navigation }) => {
       // Navigate to the login screen
       navigation.navigate("LoginScreen");
     } catch (error) {
-      console.log("Error logging out:", error);
+      // Audit user activity
+      auditUserActivity(
+        `received the following error while attempting to log out of their account:\n\t${error}`
+      );
+
+      console.error("Error logging out:", error);
     }
   };
 
   const handleOrganizationSelect = async () => {
-    // Log user activity
-    const userId = await AsyncStorage.getItem("userId");
-    console.log(`'${userId}' would like to change to another organization`);
+    // Audit user activity
+    auditUserActivity("would like to change their active organization");
 
     // Clear the selected organization from AsyncStorage
     await AsyncStorage.removeItem("selectedOrganization");
