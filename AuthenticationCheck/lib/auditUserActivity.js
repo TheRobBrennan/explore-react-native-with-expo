@@ -4,5 +4,5 @@ export const auditUserActivity = async (message) => {
   const userId = await AsyncStorage.getItem("userId");
 
   // Log user activity
-  console.log(`User ${userId} ${message}`);
+  console.log(`${userId} ${message}`);
 };
