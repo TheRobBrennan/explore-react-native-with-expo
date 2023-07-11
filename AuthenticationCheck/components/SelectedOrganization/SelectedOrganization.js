@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Text, StyleSheet } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-import { auditUserActivity } from "../lib";
+import { auditUserActivity } from "../../lib";
 
 const SelectedOrganization = () => {
   const [selectedOrganization, setSelectedOrganization] = useState("");

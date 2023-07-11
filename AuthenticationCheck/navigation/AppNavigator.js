@@ -2,9 +2,9 @@ import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 
-import LoginScreen from "../screens/LoginScreen";
-import OrganizationScreen from "../screens/OrganizationScreen";
-import HomeScreen from "../screens/HomeScreen";
+import LoginScreen from "../screens/LoginScreen/LoginScreen";
+import OrganizationScreen from "../screens/OrganizationScreen/OrganizationScreen";
+import HomeScreen from "../screens/HomeScreen/HomeScreen";
 
 const Stack = createStackNavigator();
 

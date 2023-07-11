@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import { View, Text, Button, StyleSheet } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-import SelectedOrganization from "../components/SelectedOrganization";
-import { auditUserActivity } from "../lib";
+import SelectedOrganization from "../../components/SelectedOrganization/SelectedOrganization";
+import { auditUserActivity } from "../../lib";
 
 const HomeScreen = ({ navigation }) => {
   const [selectedOrganization, setSelectedOrganization] = useState("");
